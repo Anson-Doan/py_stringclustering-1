@@ -1,3 +1,6 @@
+
+__version__ = '0.1.0'
+
 import pandas as pd
 import py_stringmatching as sm
 import py_stringsimjoin as ssj
