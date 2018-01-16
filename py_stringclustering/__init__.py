@@ -6,6 +6,15 @@ import py_stringmatching as sm
 import py_stringsimjoin as ssj
 from sklearn.cluster import AgglomerativeClustering
 
+def read_data(path_to_file):
+    """Returns a DataFrame loaded from the file path_to_file. Input strings are stored in the file at path_to_file, one value per line.
+    Args:
+        path_to_file (str): The input file path.
+    Returns:
+        A DataFrame with two columns named ‘id’ and ‘name’ where each name is an input string and the corresponding id is its unique integer ID.
+    """
+    yield
+
 def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
     """Calculates the similarity scores for every pair of strings in blocked_pairs using sim_measure
     Args:
@@ -18,7 +27,7 @@ def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
     """
     yield
 
-def get_sim_matrix(df, sim_scores)
+def get_sim_matrix(df, sim_scores):
     """Creates a similarity matrix based on the sim_scores entries. This similarity matrix is in a format consumable by appropriate scikit-learn clustering algorithms as a 'precomputed' similarity matrix.
     Args:
         df (DataFrame): The input strings and their IDs.
@@ -28,22 +37,13 @@ def get_sim_matrix(df, sim_scores)
     """
     yield
 
-def get_clusters(df, labels)
+def get_clusters(df, labels):
     """Returns clusters of strings based on the input cluster labels of each string in df.
     Args:
         df (DataFrame): The input strings and their IDs.
         labels (array): A NumPy array containing the cluster labels for strings in df.
     Returns:
         A list of string clusters, each cluster is itself a list of strings.
-    """
-    yield
-
-def read_data(path_to_file)
-    """Returns a DataFrame loaded from the file path_to_file. Input strings are stored in the file at path_to_file, one value per line.
-    Args:
-        path_to_file (str): The input file path.
-    Returns:
-        A DataFrame with two columns named ‘id’ and ‘name’ where each name is an input string and the corresponding id is its unique integer ID.
     """
     yield
 
