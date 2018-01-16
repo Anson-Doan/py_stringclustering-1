@@ -11,7 +11,7 @@ def read_data(path_to_file):
     Args:
         path_to_file (str): The input file path.
     Returns:
-        A DataFrame with two columns named ‘id’ and ‘name’ where each name is an input string and the corresponding id is its unique integer ID.
+        A DataFrame with two columns named 'id' and 'name' where each name is an input string and the corresponding id is its unique integer ID.
     """
     yield
 
