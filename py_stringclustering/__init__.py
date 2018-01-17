@@ -2,6 +2,7 @@
 __version__ = '0.1.0'
 
 import pandas as pd
+import numpy as np
 import py_stringmatching as sm
 import py_stringsimjoin as ssj
 from sklearn.cluster import AgglomerativeClustering
@@ -96,7 +97,13 @@ def get_sim_matrix(df, sim_scores):
     Returns:
         A similarity matrix in the form of a 2-D NumPy array.
     """
-    yield
+
+    sim_matrix = np.zeros([len(df), len(df)])
+
+    for l_id, r_id, sim in sim_scores:
+        sim_matrix[l_id, r_id] = sim
+
+    return sim_matrix
 
 def get_clusters(df, labels):
     """Returns clusters of strings based on the input cluster labels of each string in df.
@@ -106,6 +113,12 @@ def get_clusters(df, labels):
     Returns:
         A list of string clusters, each cluster is itself a list of strings.
     """
-    yield
 
+    clusters = []
+    unique_labels = set(labels)
+
+    for lbl in unique_labels:
+        clusters.append([df.loc[jj]['name'] for jj in np.where(labels == lbl)[0]])
+
+    return clusters
 
