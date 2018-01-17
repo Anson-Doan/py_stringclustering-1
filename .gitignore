@@ -76,3 +76,8 @@ target/
 # cython
 cythonize.dat
 
+# VIM swap files
+py_stringclustering/*.swp
+
+# AFS temp files
+py_stringclustering/._*
