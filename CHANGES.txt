@@ -1,0 +1,3 @@
+v0.1.0 -
+  * Initial release.
+  * Contains commands to cluster a collection of input strings.

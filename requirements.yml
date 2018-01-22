@@ -1,0 +1,10 @@
+name: py_labeler_dev
+channels:
+  - conda-forge
+  - uwmagellan
+  - defaults
+dependencies:
+    - setuptools
+    - pandas
+    - nose
+    - numpy
