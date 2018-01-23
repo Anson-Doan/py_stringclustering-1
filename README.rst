@@ -1,7 +1,7 @@
 py_stringclustering
 =================
 
-This project seeks to build a Python based collection of commands for clustering 
+This project seeks to build a Python-based collection of commands for clustering 
 a collection of strings.
 
 Given a set of strings D, the goal of
