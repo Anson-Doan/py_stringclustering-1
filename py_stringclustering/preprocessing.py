@@ -2,6 +2,9 @@
 # coding=utf-8
 
 import numpy as np
+    
+from py_stringclustering.utils.validation_helper import validate_get_sim_score_df
+from py_stringclustering.utils.validation_helper import validate_get_sim_score_blocked_pairs
 
 def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
     """Calculates the similarity scores for every pair of strings in blocked_pairs using sim_measure
@@ -13,6 +16,12 @@ def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
     Returns:
         A set of triplets of the form (a, b, sim_ab) where the tuple (a,b) is a string ID pair in blocked_pairs and sim_ab is the similarity of strings in df associated with a and b as measured by sim_measure, possibly using tokenizer.
     """
+
+    # Validate input DataFrame
+    validate_get_sim_score_df(df)
+
+    # Validate input blocked pairs
+    validate_get_sim_score_blocked_pairs(blocked_pairs)
 
     sim_scores = []
     tokens = {}

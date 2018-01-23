@@ -19,4 +19,4 @@ shows an example of blocking:
     >>> trigramtok = sm.QgramTokenizer(qval=3)
     >>> blocked_pairs = ssj.jaccard_join(df, df, ‘id', 'id', 'name', 'name', trigramtok, 0.3)
 
-Please refer to the API reference for more details
+Please refer to the API reference for more details.
