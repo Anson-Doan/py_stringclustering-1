@@ -46,12 +46,20 @@ before_install:
   - source activate testenv
 
 install:
-  - conda install --yes python=$PYTHON_VERSION nose pandas six scikit-learn ipython pip
+  - conda install --yes python=$PYTHON_VERSION nose pandas six scikit-learn ipython pip coverage
 #  - if [[ "$TRAVIS_OS_NAME" == "csx" ]]; then conda install --yes gcc; fi
   - conda install --yes -c uwmagellan py_stringsimjoin
   - pip install -I pyprind==2.9.8
+  - pip install coveralls
   - pip install requests
   - pip install -r requirements.txt
 
+#script:
+#  - nosetests -s
 script:
-  - nosetests -s
+  - coverage run -m nose
+  - uname -a
+
+after_success:
+  - coveralls
+
