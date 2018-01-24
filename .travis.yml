@@ -47,9 +47,9 @@ before_install:
 
 install:
   - conda install --yes python=$PYTHON_VERSION nose pandas six scikit-learn ipython pip
-#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then conda install --yes gcc; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "csx" ]]; then conda install --yes gcc; fi
   - conda install --yes -c uwmagellan py_stringsimjoin
-  - pip install pyprind==2.9.8
+  - pip install -I pyprind==2.9.8
   - pip install requests
   - pip install -r requirements.txt
 
