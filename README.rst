@@ -1,6 +1,3 @@
-py_stringclustering
-=================
-
 .. image:: https://travis-ci.org/adelaneh/py_stringclustering.svg?branch=master
   :target: https://travis-ci.org/adelaneh/py_stringclustering
 
@@ -10,6 +7,9 @@ py_stringclustering
 .. image:: https://coveralls.io/repos/github/adelaneh/py_stringclustering/badge.svg
   :target: https://coveralls.io/github/adelaneh/py_stringclustering
 
+
+py_stringclustering
+=================
 
 This project seeks to build a Python-based collection of commands for clustering 
 a collection of strings.
