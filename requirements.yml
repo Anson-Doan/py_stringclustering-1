@@ -1,4 +1,4 @@
-name: py_labeler_dev
+name: py_stringclustering_dev
 channels:
   - conda-forge
   - uwmagellan
