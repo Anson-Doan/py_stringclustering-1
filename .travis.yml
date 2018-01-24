@@ -48,7 +48,7 @@ before_install:
 install:
   - conda install --yes python=$PYTHON_VERSION nose pandas six scikit-learn ipython pip coverage
 #  - if [[ "$TRAVIS_OS_NAME" == "csx" ]]; then conda install --yes gcc; fi
-  - conda install --yes -c uwmagellan py_stringsimjoin
+  - conda install --yes -c uwmagellan py_stringsimjoin=0.1.0
   - pip install -I pyprind==2.9.8
   - pip install coveralls
   - pip install requests

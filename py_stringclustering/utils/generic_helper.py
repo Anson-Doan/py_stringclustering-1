@@ -6,6 +6,9 @@ import numpy as np
 
 from py_stringclustering.utils import install_path
 
+from py_stringclustering.utils.validation_helper import validate_get_clusters_df
+from py_stringclustering.utils.validation_helper import validate_get_clusters_labels
+
 def get_clusters(df, labels):
     """Returns clusters of strings based on the input cluster labels of each string in df.
     Args:
@@ -14,6 +17,12 @@ def get_clusters(df, labels):
     Returns:
         A list of string clusters, each cluster is itself a list of strings.
     """
+
+    # Validate input DataFrame
+    validate_get_clusters_df(df)
+
+    # Validate input labels
+    validate_get_clusters_labels(labels)
 
     clusters = []
     unique_labels = set(labels)

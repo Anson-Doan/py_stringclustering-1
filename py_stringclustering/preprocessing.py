@@ -5,6 +5,10 @@ import numpy as np
     
 from py_stringclustering.utils.validation_helper import validate_get_sim_score_df
 from py_stringclustering.utils.validation_helper import validate_get_sim_score_blocked_pairs
+from py_stringclustering.utils.validation_helper import validate_get_sim_score_tokenizer
+from py_stringclustering.utils.validation_helper import validate_get_sim_score_sim_measure
+from py_stringclustering.utils.validation_helper import validate_get_sim_matrix_df
+from py_stringclustering.utils.validation_helper import validate_get_sim_matrix_sim_scores
 
 def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
     """Calculates the similarity scores for every pair of strings in blocked_pairs using sim_measure
@@ -14,7 +18,7 @@ def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
         tokenizer (class): The tokenizer to be used to tokenize strings in df whose IDs appear in blocked_pairs (a tokenizer from py_stringmatching package).
         sim_measure (class): The similarity measure to be calculated on the blocked string pairs (a similarity measures from py_stringmatching package).
     Returns:
-        A set of triplets of the form (a, b, sim_ab) where the tuple (a,b) is a string ID pair in blocked_pairs and sim_ab is the similarity of strings in df associated with a and b as measured by sim_measure, possibly using tokenizer.
+        A list of triplets of the form (a, b, sim_ab) where the tuple (a,b) is a string ID pair in blocked_pairs and sim_ab is the similarity of strings in df associated with a and b as measured by sim_measure, possibly using tokenizer.
     """
 
     # Validate input DataFrame
@@ -22,6 +26,12 @@ def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
 
     # Validate input blocked pairs
     validate_get_sim_score_blocked_pairs(blocked_pairs)
+
+    # Validate input tokenizer
+    validate_get_sim_score_tokenizer(tokenizer)
+
+    # Validate input similarity measure
+    validate_get_sim_score_sim_measure(sim_measure)
 
     sim_scores = []
     tokens = {}
@@ -85,6 +95,12 @@ def get_sim_matrix(df, sim_scores):
     Returns:
         A similarity matrix in the form of a 2-D NumPy array.
     """
+
+    # Validate input DataFrame
+    validate_get_sim_matrix_df(df)
+
+    # Validate input similarity scores
+    validate_get_sim_matrix_sim_scores(sim_scores)
 
     sim_matrix = np.zeros([len(df), len(df)])
 
