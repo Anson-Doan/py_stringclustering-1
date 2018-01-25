@@ -47,7 +47,7 @@ def get_sim_scores(df, blocked_pairs, tokenizer, sim_measure):
                 sim_scores.append((l_id, r_id, _calc_sim(df, l_id, r_id, l_toks, r_toks, sim_measure)))
 
     else:
-        print("Blocked pairs provided.")
+        #print("Blocked pairs provided.")
 
         # TODO: Replace iterrows with itertuples
         for index, row in blocked_pairs.iterrows():
