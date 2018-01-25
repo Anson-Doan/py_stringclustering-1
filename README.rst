@@ -12,19 +12,18 @@ py_stringclustering
 =================
 
 This project seeks to build a Python-based collection of commands for clustering 
-a collection of strings.
+a set of strings.
 
 Given a set of strings D, the goal of
-string clustering is to create a partitioning of of D such that every pair of strings 
+string clustering is to create a partitioning of D such that every pair of strings 
 falling into the same partition refer to the same real-world entity, and furthermore, 
 no two strings assigned to different partitions refer to the same real-world entity. 
 A typical string clustering session involves six steps:
 
-1. Read the data from secondary storage
-2. Blocking: trying to remove obvious non-matching string pairs and reduce the set 
-considered for similarity score calculation
+1. Read the data into memory
+2. Blocking: try to remove obvious non-matching string pairs and reduce the set considered for similarity score calculation
 3. Calculate pairwise similarity scores between blocked string pairs
-4. Generate the similarity matrix based on the result of the previous step
+4. Generate a similarity matrix based on the result of the previous step
 5. Execute a clustering algorithm using the similarity matrix created above
 6. Generate string clusters based on the labels assigned by the clustering algorithm
 
