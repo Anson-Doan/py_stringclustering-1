@@ -1,9 +1,9 @@
 Clustering Strings
 -------------
 
-The py_stringclustering package provides commands to load and cluster a 
+The *py_stringclustering* package provides commands to load and cluster a 
 collection of strings. For example, the following command loads a collection 
-of strings from a file stored at path_to_file:
+of strings from a file stored at ``path_to_file``:
 
     >>> import py_stringclustering as scl
     >>> df = scl.read_data(path_to_file)
@@ -16,7 +16,8 @@ pairs to compute the string similarity measure for. The following example
 shows an example of blocking:
 
     >>> import py_stringmatching as sm
+    >>> import py_stringsimjoin as ssj
     >>> trigramtok = sm.QgramTokenizer(qval=3)
-    >>> blocked_pairs = ssj.jaccard_join(df, df, ‘id', 'id', 'name', 'name', trigramtok, 0.3)
+    >>> blocked_pairs = ssj.jaccard_join(df, df, 'id', 'id', 'name', 'name', trigramtok, 0.3)
 
 Please refer to the API reference for more details.

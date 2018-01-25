@@ -11,11 +11,16 @@ from py_stringclustering.utils.validation_helper import validate_get_clusters_la
 
 def get_clusters(df, labels):
     """Returns clusters of strings based on the input cluster labels of each string in df.
+
     Args:
         df (DataFrame): The input strings and their IDs.
         labels (array): A NumPy array containing the cluster labels for strings in df.
+
     Returns:
         A list of string clusters, each cluster is itself a list of strings.
+
+    Raises:
+        TypeError : If any of the inputs are invalid
     """
 
     # Validate input DataFrame
