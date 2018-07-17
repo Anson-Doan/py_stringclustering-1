@@ -119,4 +119,79 @@ def get_sim_matrix(df, sim_scores):
 
     return sim_matrix
 
+def get_sim_scores1(df, blocked_pairs, tokenizer, sim_measure):
+    """Calculates the similarity scores for every pair of strings in blocked_pairs using sim_measure
+    Args:
+        df (DataFrame): The input strings and their IDs.
+        blocked_pairs (DataFrame): A table containing string ID pairs output by the blocking step.
+        tokenizer (class): The tokenizer to be used to tokenize strings in df whose IDs appear in blocked_pairs (a tokenizer from py_stringmatching package).
+        sim_measure (class): The similarity measure to be calculated on the blocked string pairs (a similarity measures from py_stringmatching package).
+    Returns:
+        A list of triplets of the form (a, b, sim_ab) where the tuple (a,b) is a string ID pair in blocked_pairs and sim_ab is the similarity of strings in df associated with a and b as measured by sim_measure, possibly using tokenizer.
+    Raises:
+        TypeError : If any of the inputs are invalid
+    """
+
+    # Validate input DataFrame
+    validate_get_sim_score_df(df)
+
+    # Validate input blocked pairs
+    validate_get_sim_score_blocked_pairs(blocked_pairs)
+
+    # Validate input tokenizer
+    validate_get_sim_score_tokenizer(tokenizer)
+
+    # Validate input similarity measure
+    validate_get_sim_score_sim_measure(sim_measure)
+
+    sim_scores = []
+    tokens = {}
+
+    # If blocked_pairs is None, then return sim of all possible pairs
+    if blocked_pairs is None:
+        for l_id in range(len(df)):
+            l_toks = (row['name'] for index, row in df)
+
+            for r_id in range(l_id + 1, len(df)):
+                r_toks = (row['name'] for index, row in df)
+
+                sim_scores.append((l_id, r_id, _calc_sim(df, l_id, r_id, l_toks, r_toks, sim_measure)))
+
+    else:
+        # print("Blocked pairs provided.")
+
+        # TODO: Replace iterrows with itertuples
+        for index, row in blocked_pairs.iterrows():
+            l_id, r_id = int(row['l_id']), int(row['r_id'])
+
+            # If the two strings are the same, don't calculate sim; it is 1.
+            # If l_id > r_id, don't calculate sim; the pair (r_id, l_id) has showed up before or will show up later.
+            if l_id >= r_id:
+                continue
+
+            # Tokenize the string corr. to l_id; if already have, just retrieve the tokens
+            l_toks = df.at[l_id, 'name']
+
+            # Tokenize the string corr. to r_id; if already have, just retrieve the tokens
+            r_toks = df.at[r_id, 'name']
+
+            # Calculate the similarity measure and add the triplet to the result set
+            sim_scores.append((l_id, r_id, _calc_sim(df, l_id, r_id, l_toks, r_toks, sim_measure)))
+
+    return sim_scores
+
+import pandas as pd
+
+
+def tokenize_df (df, tokenizer):
+    indexList = []
+    tokenList = []
+    for index, row in df.iterrows():
+        indexList.append([index])
+        tokenList.append(tokenizer.tokenize(row['name']))
+
+    df1Dict = {'id': indexList, 'name': tokenList}
+    df1 = pd.DataFrame.from_dict(data = df1Dict)
+    return df1
+
 
